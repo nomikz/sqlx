@@ -6,16 +6,14 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-type ctxKey int
-
-var ctxKeyTx ctxKey = 1
+type ctxKey struct{}
 
 func ctxWithTx(ctx context.Context, tx *sqlx.Tx) (context.Context, error) {
-	return context.WithValue(ctx, ctxKeyTx, tx), nil
+	return context.WithValue(ctx, ctxKeyTx{}, tx), nil
 }
 
 func txFromCtx(ctx context.Context) (*sqlx.Tx, bool) {
-	v := ctx.Value(ctxKeyTx)
+	v := ctx.Value(ctxKeyTx{})
 
 	tx, ok := v.(*sqlx.Tx)
 	return tx, ok
