@@ -21,20 +21,20 @@ func New(driverName, dsn string) (*DB, error) {
 }
 
 func (db *DB) QueryRow(ctx context.Context, query string, args ...interface{}) *sqlx.Row {
-	return db.getConn(ctx).QueryRowxContext(ctx, query, args)
+	return db.getConn(ctx).QueryRowxContext(ctx, query, args...)
 }
 func (db *DB) Query(ctx context.Context, query string, args ...interface{}) (*sqlx.Rows, error) {
-	return db.getConn(ctx).QueryxContext(ctx, query, args)
+	return db.getConn(ctx).QueryxContext(ctx, query, args...)
 }
 func (db *DB) Exec(ctx context.Context, query string, args ...any) (sql.Result, error) {
-	return db.getConn(ctx).ExecContext(ctx, query, args)
+	return db.getConn(ctx).ExecContext(ctx, query, args...)
 }
 
 func (db *DB) Get(ctx context.Context, dest interface{}, query string, args ...interface{}) error {
-	return db.getConn(ctx).GetContext(ctx, dest, query, args)
+	return db.getConn(ctx).GetContext(ctx, dest, query, args...)
 }
 func (db *DB) Select(ctx context.Context, dest interface{}, query string, args ...interface{}) error {
-	return db.getConn(ctx).SelectContext(ctx, dest, query, args)
+	return db.getConn(ctx).SelectContext(ctx, dest, query, args...)
 }
 
 func (db *DB) NamedExec(ctx context.Context, query string, arg interface{}) (sql.Result, error) {
